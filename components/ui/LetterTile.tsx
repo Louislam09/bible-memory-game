@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 
 interface LetterTileProps {
-  letter: string;
+  letter: string | number;
   onPress: () => void;
 }
 
@@ -10,10 +10,12 @@ export default function LetterTile({ letter, onPress }: LetterTileProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`aspect-square p-2 ${letter ? 'bg-slate-700' : 'bg-slate-600'} m-1 rounded-2xl justify-center items-center`}
-      style={{ width: '30%' }}
-    >
-      <Text className="text-white text-4xl font-bold">{letter}</Text>
+      activeOpacity={1}
+      className={`m-1 aspect-square items-center justify-center rounded-2xl p-2
+      ${letter ? 'border-b-4 border-r-4 border-b-slate-800 border-r-slate-900 bg-slate-700' : 'bg-slate-600'}
+      transition-transform active:translate-y-1`}
+      style={{ width: '30%' }}>
+      <Text className="text-4xl font-bold text-white">{letter}</Text>
     </TouchableOpacity>
   );
 }

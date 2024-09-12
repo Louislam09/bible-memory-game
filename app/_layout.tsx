@@ -23,7 +23,7 @@ export default function Layout() {
         },
       }}>
       <Stack.Screen
-        name="(tabs)"
+        name="game"
         options={{
           headerShown: false,
         }}

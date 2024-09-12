@@ -9,29 +9,13 @@ interface GameCardProps {
 
 export default function GameCard({ children, hint, word }: GameCardProps) {
   return (
-    <View className="flex-1 bg-red-500 rounded-3xl p-4">
-      {/* Eyes */}
-      <View className="flex-row justify-center mb-4">
-        <View className="w-8 h-8 bg-white rounded-full mx-2 flex items-center justify-center">
-          <View className="w-4 h-4 bg-black rounded-full" />
-        </View>
-        <View className="w-8 h-8 bg-white rounded-full mx-2 flex items-center justify-center">
-          <View className="w-4 h-4 bg-black rounded-full" />
-        </View>
-      </View>
-
+    <View className="rounded-3xl bg-red-500 p-4">
       {/* Game Content */}
-      <View className="flex-1 bg-red-600 rounded-2xl p-4">
-        {children}
-      </View>
-
-      {/* Hint */}
-      <View className="bg-white rounded-full py-2 px-4 mt-4">
-        <Text className="text-center font-bold text-slate-800">{hint}</Text>
-      </View>
-
+      <View className="rounded-2xl bg-[#80263f] p-4">{children}</View>
       {/* Word */}
-      <Text className="text-white text-center text-lg font-bold mt-2">{word}</Text>
+      <View className="mt-2 items-center justify-center rounded-full border-b-4 border-r-4 border-b-slate-800 border-r-slate-900 bg-[#80263f] px-4 py-3">
+        <Text className="text-center text-2xl font-bold text-[#F8D3AB]">{word}</Text>
+      </View>
     </View>
   );
 }

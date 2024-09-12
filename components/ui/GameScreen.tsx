@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 import Button3D from './Button3D';
 import GameCard from './GameCard';
 import LetterTile from './LetterTile';
 import Tooltip from './Tooltip';
 import TopBar from './TopBar';
+import { Link } from 'expo-router';
 
 export default function GameScreen() {
-  const [level, setLevel] = useState(1);
-  const [stars, setStars] = useState(12);
-  const [points, setPoints] = useState(23495);
+  const [level, setLevel] = useState(0);
+  const [stars, setStars] = useState(0);
+  const [points, setPoints] = useState(0);
+  const [hints, setHints] = useState(0);
+  const [swaps, setSwaps] = useState(0);
 
   const handleHint = () => {
     console.log('Hint used');
@@ -24,13 +27,20 @@ export default function GameScreen() {
     console.log('Help requested');
   };
 
+  const letters = new Array(15).fill(0).map((x, i) => i);
+
   return (
-    <ScrollView className="flex-1 bg-slate-800">
-      <View className="p-4">
+    <View className="flex-1 bg-slate-800 p-4 pt-10">
+      <View className="flex-row">
+        <Link href="/" asChild>
+          <Button3D withIcon="home" variant="secondary" text="<" onPress={handleHelp} />
+        </Link>
+      </View>
+      <View className="flex-1 bg-slate-800 p-2">
         <TopBar level={level} stars={stars} points={points} />
         <GameCard hint="MARVELOUS" word="Years crossing">
-          <View className="flex-1 flex-row flex-wrap items-center justify-center">
-            {['', 'A', '', '', '', 'E'].map((letter, index) => (
+          <View className="flex-row flex-wrap items-center justify-center">
+            {letters.map((letter, index) => (
               <LetterTile
                 key={index}
                 letter={letter}
@@ -40,13 +50,10 @@ export default function GameScreen() {
           </View>
         </GameCard>
         <View className="mt-8 flex-row justify-between">
-          <Tooltip text="Get help">
-            <Button3D text="?" onPress={handleHelp} />
-          </Tooltip>
-          <Button3D text="HINT" number={5} onPress={handleHint} />
-          <Button3D text="SWAP" number={3} onPress={handleSwap} />
+          <Button3D variant="default" text="HINT" number={hints} onPress={handleHint} />
+          <Button3D variant="secondary" text="SWAP" number={swaps} onPress={handleSwap} />
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }

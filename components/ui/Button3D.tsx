@@ -46,7 +46,7 @@ const Button3D = forwardRef<any, Button3DProps>(
     return (
       <TouchableOpacity
         activeOpacity={1}
-        onPress={() => onPress()}
+        onPress={onPress}
         className="transition-transform duration-100 active:translate-y-2">
         <View
           className={`flex-row items-center justify-between rounded-full border-2 border-t-0 px-6 py-5 shadow-lg ${styles.container}`}>

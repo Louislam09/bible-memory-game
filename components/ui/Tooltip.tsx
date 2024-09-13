@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 
 interface TooltipProps {
   text: string;
   children: React.ReactNode;
+  isVisible: boolean;
 }
 
-export default function Tooltip({ text, children }: TooltipProps) {
-  const [isVisible, setIsVisible] = useState(false);
-
+export default function Tooltip({ text, children, isVisible }: TooltipProps) {
   return (
-    <View>
-      <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>{children}</TouchableOpacity>
+    <View className="relative">
       {isVisible && (
         <>
-          <Text className="text-2xl">Luis</Text>
-          <View className="absolute bottom-full left-0 mb-2 rounded-lg bg-white p-2 shadow-lg">
+          <View className="absolute bottom-full left-1/2 mb-2 w-[150px] -translate-x-1/2 transform rounded-lg bg-white p-2 shadow-lg">
             <Text className="text-slate-800">{text}</Text>
-            <View className="absolute bottom-[-8px] left-4 h-4 w-4 rotate-45 bg-white" />
+            {/* Tooltip arrow */}
+            <View className="absolute bottom-[-8px] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 transform bg-white" />
           </View>
         </>
       )}
+      {children}
     </View>
   );
 }
